@@ -61,7 +61,7 @@ class NMCC_Loss(nn.Module):
         null = torch.zeros_like(ihc_hed[:,:, :, 0])  
 
         ihc_chanel_h = self.combine_stains(torch.stack((ihc_hed[:,:, :, 0], null, null), axis=-1), self.rgb_from_hed)
-        ihc_chanel_d = self.combine_stains(torch.stack((ihc_hed[:,:, :, 2], null, null), axis=-1), self.rgb_from_hed)
+        ihc_chanel_d = self.combine_stains(null, null, torch.stack((ihc_hed[:,:, :, 2]), axis=-1), self.rgb_from_hed)
 
         h = ihc_chanel_h.permute(0, 3, 1, 2)
         d = ihc_chanel_d.permute(0, 3, 1, 2)
